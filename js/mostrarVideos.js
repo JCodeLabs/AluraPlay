@@ -27,13 +27,17 @@ export default function crearCard(titulo, descripcion, url, imagem) {
 }
 
 async function listarVideos() {
-  const listaAPI = await conexionAPI.listarVideos();
-
-  listaAPI.forEach((video) =>
-    contenedorVideos.appendChild(
-      crearCard(video.titulo, video.descripcion, video.url, video.imagem)
-    )
-  );
+  try {
+    const listaAPI = await conexionAPI.listarVideos();
+    listaAPI.forEach((video) =>
+      contenedorVideos.appendChild(
+        crearCard(video.titulo, video.descripcion, video.url, video.imagem)
+      )
+    );
+  } catch (error) {
+    console.error("Error: ", error);
+    contenedorVideos.innerHTML = `<h2 class="mensaje__titulo">Ha ocurrido un problema con la conexión :(</h2>`;
+  }
 }
 
 listarVideos();
