@@ -2,7 +2,7 @@ import { conexionAPI } from "./conexionAPI.js";
 
 const contenedorVideos = document.querySelector("[data-lista");
 
-function crearCard(titulo, descripcion, url, imagem) {
+export default function crearCard(titulo, descripcion, url, imagem) {
   const video = document.createElement("li");
   video.className = "videos__item";
   video.innerHTML = `
