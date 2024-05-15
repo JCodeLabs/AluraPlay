@@ -1,3 +1,60 @@
+async function listarVideos() {
+  const conexion = await fetch("http://localhost:3000/videos");
+  const conexionConvertida = await conexion.json();
+  return conexionConvertida;
+}
+
+async function enviarVideo(titulo, descripcion, url, imagem) {
+  const conexion = fetch("http://localhost:3000/videos", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      titulo,
+      descripcion: `${descripcion} mil visualizaciones`,
+      url,
+      imagem,
+    }),
+  });
+
+  const conexionConvertida = (await conexion).json;
+  return conexionConvertida;
+}
+
+async function bucarVideos(palabraClave) {
+  const conexion = await fetch(
+    `http://localhost:3000/videos?titulo_like=${palabraClave}`
+  );
+  const conexionConvertida = await conexion.json();
+  return conexionConvertida;
+}
+
+// Exportamos un objeto llamado "conexionAPI" que contiene la función "listarVideos"
+export const conexionAPI = {
+  listarVideos,
+  enviarVideo,
+  bucarVideos,
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const contenedorDeVideos = document.querySelector(".videos__container");
 
 // async function listarVideos() {
@@ -67,43 +124,3 @@
 // }
 
 // listarVideos();
-
-async function listarVideos() {
-  const conexion = await fetch("http://localhost:3000/videos");
-  const conexionConvertida = await conexion.json();
-  return conexionConvertida;
-}
-
-async function enviarVideo(titulo, descripcion, url, imagem) {
-  const conexion = fetch("http://localhost:3000/videos", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      titulo,
-      descripcion: `${descripcion} mil visualizaciones`,
-      url,
-      imagem,
-    }),
-  });
-
-  const conexionConvertida = (await conexion).json;
-
-  return conexionConvertida;
-}
-
-async function bucarVideos(palabraClave) {
-  const conexion = await fetch(
-    `http://localhost:3000/videos?titulo_like=${palabraClave}`
-  );
-  const conexionConvertida = await conexion.json();
-  return conexionConvertida;
-}
-
-// Exportamos un objeto llamado "conexionAPI" que contiene la función "listarVideos"
-export const conexionAPI = {
-  listarVideos,
-  enviarVideo,
-  bucarVideos,
-};

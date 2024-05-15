@@ -9,7 +9,8 @@ async function filtrarVideo(e) {
 
   const lista = document.querySelector("[data-lista");
 
-  while(lista.firstChild){
+  // Elimina todos los elementos hijos del contenedor para limpiar los resultados anteriores
+  while (lista.firstChild) {
     lista.removeChild(lista.firstChild);
   }
 
@@ -18,6 +19,10 @@ async function filtrarVideo(e) {
       crearCard(video.titulo, video.descripcion, video.url, video.imagem)
     )
   );
+
+  if (busqueda.length == 0) {
+    lista.innerHTML = `<h2 class="mensaje__titulo">No fueron encontrados elementos para "${datosDeBusqueda}"</h2>`;
+  }
 }
 
 const btnBuscar = document.querySelector("[data-btn-busqueda]");
